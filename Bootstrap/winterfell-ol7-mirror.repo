@@ -1,0 +1,71 @@
+
+[UEKR5]
+name=Unbreakable Enterprise Kernel Release 5 for Oracle Linux 7 (x86_64)
+baseurl=http://winterfell/yum/OracleLinux/OL7/UEKR5/$basearch
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY
+enabled=1
+proxy=_none_
+
+[latest]
+name=Oracle Linux 7 Latest (x86_64)
+baseurl=http://winterfell/yum/OracleLinux/OL7/latest/$basearch
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY
+enabled=1
+proxy=_none_
+
+[addons]
+name=Oracle Linux 7 Addons (x86_64)
+baseurl=http://winterfell/yum/OracleLinux/OL7/addons/$basearch
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY
+enabled=1
+proxy=_none_
+
+[ksplice]
+name=Ksplice for Oracle Linux 7 (x86_64)
+baseurl=http://winterfell/yum/OracleLinux/OL7/ksplice/$basearch
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY
+enabled=1
+proxy=_none_
+
+[developer]
+name=Packages for creating test and development environments for Oracle Linux 7 (x86_64)
+baseurl=http://winterfell/yum/OracleLinux/OL7/developer/$basearch
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY
+enabled=1
+proxy=_none_
+
+[developer_EPEL]
+name=EPEL Packages for creating test and development environments for Oracle Linux 7 (x86_64)
+baseurl=http://winterfell/yum/OracleLinux/OL7/developer/EPEL/$basearch
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY
+enabled=1
+proxy=_none_
+
+
+[openshift]
+name=Openshift Repository
+baseurl=http://winterfell/yum/openshift/
+enabled=1
+gpgcheck=1
+keepcache=0
+gpgkey=http://winterfell/yum/openshift/RPM-GPG-KEY-CentOS-SIG-PaaS
+
+
+
+[centosextras]
+name=Centos Extras
+baseurl=http://winterfell/yum/centosextras
+enabled=1
+gpgcheck=1
+keepcache=0
+gpgkey=http://winterfell/yum/centosextras/RPM-GPG-KEY-CentOS-7
+proxy=_none_
+
+
+
