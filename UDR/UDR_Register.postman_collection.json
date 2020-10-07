@@ -1,0 +1,117 @@
+{
+	"info": {
+		"_postman_id": "d15549c4-9eaa-4450-9ba7-aa8125106ae3",
+		"name": "UDR_Register",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "UDR Register-Test Copy",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nfInstanceId\": \"fe7d992b-0541-4c7d-ab84-555551111111\",\n    \"nfType\": \"UDR\",\n    \"nfStatus\": \"REGISTERED\",\n    \"plmn\": null,\n    \"nsiList\": null,\n    \"fqdn\": \"jack-rc1-udr-1-udr-simulator.jack-rc1-udr-1.svc\",\n    \"interPlmnFqdn\": null,\n    \"ipv4Addresses\": null,\n    \"ipv6Addresses\": null,\n    \"priority\": 2,\n    \"capacity\": 2,\n    \"load\": 2,\n    \"locality\": null,\n    \"pcfInfo\": null,\n    \"udmInfo\": null,\n    \"ausfInfo\": null,\n    \"amfInfo\": null,\n    \"smfInfo\": null,\n    \"upfInfo\": null,\n    \"udrInfo\": {\n        \"supiRanges\": [\n            {\n                \"start\": \"450081000000000\",\n                \"end\": \"450081002000000\",\n                \"pattern\": \"^nai-450081.+@.+org$\"\n            }\n        ],\n        \"gpsiRanges\": [\n            {\n                \"start\": \"13100000000\",\n                \"end\": \"13102000000\",\n                \"pattern\": \"^extid-.+@oracle1.com$\"\n            }\n        ],\n        \"supportedDataSets\": [\n            \"POLICY\"\n        ]\n    },\n    \"bsfInfo\": null,\n    \"customInfo\": null,\n    \"recoveryTime\": null,\n    \"nfServices\": [\n        {\n            \"serviceInstanceId\": \"94d8d19a-b0d9-4d6d-994f-39a49ed5c111\",\n            \"serviceName\": \"nudr-dr\",\n            \"versions\": [\n                {\n                    \"apiVersionInUri\": \"v1\",\n                    \"apiFullVersion\": \"1.R15.1.0\",\n                    \"expiry\": \"2019-08-03T18:55:08.871+0000\"\n                }\n            ],\n            \"scheme\": \"http\",\n            \"nfServiceStatus\": \"REGISTERED\",\n            \"fqdn\": \"fqdn3\",\n            \"interPlmnFqdn\": null,\n            \"ipEndPoints\": [\n                {\n                    \"ipv4Address\": \"jack-rc1-udr-1-udr-simulator.jack-rc1-udr-1.svc\",\n                    \"ipv6Address\": null,\n                    \"transport\": \"TCP\",\n                    \"port\": 5808\n                }\n            ],\n            \"apiPrefix\": null,\n            \"defaultNotificationSubscriptions\": null,\n            \"allowedPlmns\": null,\n            \"allowedNfTypes\": [\n                \"NEF\",\n                \"BSF\",\n                \"PCF\"\n            ],\n            \"allowedNfDomains\": null,\n            \"allowedNssais\": null,\n            \"priority\": 20,\n            \"capacity\": 20,\n            \"load\": 20,\n            \"recoveryTime\": 1542876663222,\n            \"supportedFeatures\": null\n        }\n    ]\n}"
+				},
+				"url": {
+					"raw": "http://10.75.151.167:807/nnrf-nfm/v1/nf-instances/fe7d992b-0541-4c7d-ab84-555551111111",
+					"protocol": "http",
+					"host": [
+						"10",
+						"75",
+						"151",
+						"167"
+					],
+					"port": "807",
+					"path": [
+						"nnrf-nfm",
+						"v1",
+						"nf-instances",
+						"fe7d992b-0541-4c7d-ab84-555551111111"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Register the UDR1 to NRF(PUT)",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nfInstanceId\": \"fe7d992b-0541-4c7d-ab84-c6d70b1b1111\",\n    \"nfType\": \"UDR\",\n    \"nfStatus\": \"REGISTERED\",\n    \"plmn\": null,\n    \"nsiList\": null,\n    \"fqdn\": \"jackpcf-app-udr-simulator.jack-pcf.svc\",\n    \"interPlmnFqdn\": null,\n    \"ipv4Addresses\": null,\n    \"ipv6Addresses\": null,\n    \"priority\": 10,\n    \"capacity\": 1000,\n    \"load\": 5,\n    \"locality\": null,\n    \"pcfInfo\": null,\n    \"udmInfo\": null,\n    \"ausfInfo\": null,\n    \"amfInfo\": null,\n    \"smfInfo\": null,\n    \"upfInfo\": null,\n    \"udrInfo\": {\n        \"supiRanges\": [\n            {\n                \"start\": \"4601231380010001\",\n                \"end\": \"4601231380020000\",\n                \"pattern\":\"^nai-460123.+@.+\\.org$\"\n            }\n        ],\n        \"gpsiRanges\": [\n            {\n                \"start\": \"1380010001\",\n                \"end\": \"1380020000\",\n                \"pattern\": null\n            }\n        ],\n        \"supportedDataSets\": [\n            \"POLICY\"\n        ]\n    },\n    \"bsfInfo\": null,\n    \"customInfo\": null,\n    \"recoveryTime\": null,\n    \"nfServices\": [\n        {\n            \"serviceInstanceId\": \"94d8d19a-b0d9-4d6d-994f-39a49ed5c122\",\n            \"serviceName\": \"nudr-dr\",\n            \"versions\": [\n                {\n                    \"apiVersionInUri\": \"v1\",\n                    \"apiFullVersion\": \"1.R15.1.0\",\n                    \"expiry\": \"2019-08-03T18:55:08.871+0000\"\n                }\n            ],\n            \"scheme\": \"http\",\n            \"nfServiceStatus\": \"REGISTERED\",\n            \"fqdn\": \"fqdn1\",\n            \"interPlmnFqdn\": null,\n            \"ipEndPoints\": [\n                {\n                    \"ipv4Address\": \"jackpcf-app-udr-simulator.jack-pcf.svc\",\n                    \"ipv6Address\": null,\n                    \"transport\": \"TCP\",\n                    \"port\": 5807\n                }\n            ],\n            \"apiPrefix\": null,\n            \"defaultNotificationSubscriptions\": null,\n            \"allowedPlmns\": null,\n            \"allowedNfTypes\": [\n                \"AF\"\n            ],\n            \"allowedNfDomains\": null,\n            \"allowedNssais\": null,\n            \"priority\": 20,\n            \"capacity\": 200,\n            \"load\": 30,\n            \"recoveryTime\": 1542876663222,\n            \"supportedFeatures\": null\n        }\n    ]\n}"
+						},
+						"url": {
+							"raw": "http://10.113.76.45:32017/nnrf-nfm/v1/nf-instances/fe7d992b-0541-4c7d-ab84-c6d70b1b1111",
+							"protocol": "http",
+							"host": [
+								"10",
+								"113",
+								"76",
+								"45"
+							],
+							"port": "32017",
+							"path": [
+								"nnrf-nfm",
+								"v1",
+								"nf-instances",
+								"fe7d992b-0541-4c7d-ab84-c6d70b1b1111"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "1392"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/0.14.1 Python/3.6.3"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 11 Mar 2019 08:13:31 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"nfInstanceId\": \"fe7d992b-0541-4c7d-ab84-c6d70b1b1111\",\n    \"nfType\": \"UDR\",\n    \"nfStatus\": \"REGISTERED\",\n    \"plmn\": null,\n    \"nsiList\": null,\n    \"fqdn\": \"jackpcf-app-udr-simulator.jack-pcf.svc\",\n    \"interPlmnFqdn\": null,\n    \"ipv4Addresses\": null,\n    \"ipv6Addresses\": null,\n    \"priority\": 10,\n    \"capacity\": 1000,\n    \"load\": 5,\n    \"locality\": null,\n    \"pcfInfo\": null,\n    \"udmInfo\": null,\n    \"ausfInfo\": null,\n    \"amfInfo\": null,\n    \"smfInfo\": null,\n    \"upfInfo\": null,\n    \"udrInfo\": {\n        \"supiRanges\": [\n            {\n                \"start\": \"4601231380010001\",\n                \"end\": \"4601231380020000\",\n                \"pattern\": null\n            }\n        ],\n        \"gpsiRanges\": [\n            {\n                \"start\": \"1380010001\",\n                \"end\": \"1380020000\",\n                \"pattern\": null\n            }\n        ],\n        \"supportedDataSets\": [\n            \"POLICY\"\n        ]\n    },\n    \"bsfInfo\": null,\n    \"customInfo\": null,\n    \"recoveryTime\": null,\n    \"nfServices\": [\n        {\n            \"serviceInstanceId\": \"94d8d19a-b0d9-4d6d-994f-39a49ed5c122\",\n            \"serviceName\": \"nudr-dr\",\n            \"versions\": [\n                {\n                    \"apiVersionInUri\": \"v1\",\n                    \"apiFullVersion\": \"1.R15.1.0\",\n                    \"expiry\": \"2019-08-03T18:55:08.871+0000\"\n                }\n            ],\n            \"scheme\": \"http\",\n            \"nfServiceStatus\": \"REGISTERED\",\n            \"fqdn\": \"fqdn1\",\n            \"interPlmnFqdn\": null,\n            \"ipEndPoints\": [\n                {\n                    \"ipv4Address\": \"jackpcf-app-udr-simulator.jack-pcf.svc\",\n                    \"ipv6Address\": null,\n                    \"transport\": \"TCP\",\n                    \"port\": 5807\n                }\n            ],\n            \"apiPrefix\": null,\n            \"defaultNotificationSubscriptions\": null,\n            \"allowedPlmns\": null,\n            \"allowedNfTypes\": [\n                \"AF\"\n            ],\n            \"allowedNfDomains\": null,\n            \"allowedNssais\": null,\n            \"priority\": 20,\n            \"capacity\": 200,\n            \"load\": 30,\n            \"recoveryTime\": 1542876663222,\n            \"supportedFeatures\": null\n        }\n    ]\n}"
+				}
+			]
+		}
+	],
+	"protocolProfileBehavior": {}
+}

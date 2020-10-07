@@ -1,0 +1,42 @@
+## Sample template start#
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: ocnrf-serviceaccount
+  namespace: ocnrf
+---
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: ocnrf-role
+  namespace: ocnrf
+rules:
+- apiGroups:
+  - "" # "" indicates the core API group
+  resources:
+  - services
+  - configmaps
+  - pods
+  - secrets
+  - endpoints
+  verbs:
+  - get
+  - watch
+  - list
+---
+
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: RoleBinding
+metadata:
+  name: ocnrf-rolebinding
+  namespace: ocnrf
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: ocnrf-role
+subjects:
+- kind: ServiceAccount                                   
+  name:  ocnrf-serviceaccount
+  namespace: ocnrf
+## Sample template end#
