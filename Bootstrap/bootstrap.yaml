@@ -12,6 +12,8 @@
          127.0.0.1  localhost localhost4 localhost4.localdomain4 bootstrap
          ::1        localhost localhost6 localhost6.localdomain6 bootstrap
          10.75.216.10     winterfell
+	 10.75.216.114    winterfell
+	 10.75.200.217    reg-1
        path: /etc/hosts
        owner: root:root
        permissions: '0644'
@@ -20,7 +22,7 @@
          export https_proxy=http://www-proxy.us.oracle.com:80
          export HTTP_PROXY=http://www-proxy.us.oracle.com:80
          export HTTPS_PROXY=http://www-proxy.us.oracle.com:80
-         export no_proxy=localhost,127.0.0.1,bootstrap,us.oracle.com,oracle.com,labs.nc.tekelec.com,winterfell,10.152.117.150
+         export no_proxy=localhost,127.0.0.1,oracle.com,us.oracle.com,labs.nc.tekelec.com,winterfell,10.152.117.150,reg-1,arcus.us.oracle.com,arcus.labs.nc.tekelec.com
        path: /etc/profile.d/proxy.sh
        owner: root:root
        permissions: '0755'
