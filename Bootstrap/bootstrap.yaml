@@ -12,8 +12,8 @@
          127.0.0.1  localhost localhost4 localhost4.localdomain4 bootstrap
          ::1        localhost localhost6 localhost6.localdomain6 bootstrap
          10.75.216.10     winterfell
-	 10.75.216.114    winterfell
-	 10.75.200.217    reg-1
+         10.75.216.114    winterfell
+         10.75.200.217    reg-1
        path: /etc/hosts
        owner: root:root
        permissions: '0644'
