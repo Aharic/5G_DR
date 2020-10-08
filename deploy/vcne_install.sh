@@ -8,13 +8,13 @@
 
 if [ -z "${CENTRAL_REPO}" ]; then
    echo "No DOCKER_REG variable specified for all services, stopping deployment" 1>&2
-   exit 1;
-elif [ -z "${vCNE_VERSION}" ]; then
-   echo "No vCNE_VERSION variable specified, stopping deployment" 1>&2
-   exit 1;
-else [ -z "${OCCNE_TFVARS}" ]; then
-   echo "No OCCNE_TFVARS variable specified, stopping deployment" 1>&2
-   exit 1;
+   exit 1
+elif [ -z "${OCCNE_VERSION}" ]; then
+   echo "No OCCNE_VERSION variable specified, stopping deployment" 1>&2
+   exit 1
+elif [ -z "${OCCNE_TFVARS_DIR}" ]; then
+   echo "No OCCNE_TFVARS_DIR variable specified, stopping deployment" 1>&2
+   exit 1
 fi
 
 if [ -z "${CI_COMMIT_REF_NAME}" ]; then
@@ -43,14 +43,14 @@ mkdir /tmp/yum.repos.d
 
 # Copy files from .git/repo to local repo directories
 
-cp cne_backup/repos/winterfell:5000.crt /tmp/certificates/
+cp cne_backup/src/CNE/certificates/winterfell:5000.crt /tmp/certificates/
 cp cne_backup/repos/winterfell-ol7-mirror.repo /tmp/yum.repos.d
 sudo cp cne_backup/repos/public-yum-ol7.repo /etc/yum.repos.d/public-yum-ol7.repo
 
 # Setup occne_clouduser folder w/ golden cluster.tfvars file
 
 mkdir /var/terraform/occne_clouduser
-cp cne_backup/src/CNE/cluster.tfvars /var/terraform/occne_clouduser
+cp cne_backup/src/CNE/cluster-$OCCNE_VERSION.tfvars /var/terraform/occne_clouduser/cluster.tfvars
 
 # Openstack initialization
 
@@ -74,10 +74,10 @@ floatingip_pool=$(awk -v var="$external_net" '$0 ~ var {print $4}' networks)
 
 # Replace cluster.tfvars subnet placeholder variables with environment data from above
 
-old_extnet=$(cat cluster.tfvars | grep -i external_net | grep -oP 'external_net = "\K[^"]+')
-old_floatpool=$(cat cluster.tfvars | grep -i floatingip_pool | grep -oP 'floatingip_pool = "\K[^"]+')
-sed -i "s/$old_extnet/$external_net/g" cluster.tfvars
-sed -i "s/$old_floatpool/$floatingip_pool/g" cluster.tfvars
+old_extnet=$(cat /var/terraform/occne_clouduser/cluster.tfvars | grep -i external_net | grep -oP 'external_net = "\K[^"]+')
+old_floatpool=$(cat /var/terraform/occne_clouduser/cluster.tfvars | grep -i floatingip_pool | grep -oP 'floatingip_pool = "\K[^"]+')
+sed -i "s/$old_extnet/$external_net/g" /var/terraform/occne_clouduser/cluster.tfvars
+sed -i "s/$old_floatpool/$floatingip_pool/g" /var/terraform/occne_clouduser/cluster.tfvars
 
 # Generate private/public key-pair
 
