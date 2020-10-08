@@ -40,3 +40,4 @@ subnet_cidr = "192.168.200.0/22"
 floatingip_pool = "ext-net2"
 bastion_allowed_remote_ips = ["0.0.0.0/0"]
 wait_for_floatingip = "true"
+use_floating_ip = "true"
