@@ -25,6 +25,7 @@ fi
 
 sudo yum install -y wget
 sudo yum install -y vim
+pip3 install --user python-openstackclient
 
 # Setup Git and clone cne_backup repo
 
