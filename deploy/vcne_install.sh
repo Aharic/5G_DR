@@ -1,4 +1,6 @@
-﻿# command example
+﻿#!/bin/bash
+
+# Launch command example
 # OCCNE_TFVARS_DIR=occne_clouduser CENTRAL_REPO=winterfell CENTRAL_REPO_IP=10.75.216.10 OCCNE_VERSION=1.5.0 OCCNE_CLUSTER=occne ./vcne_install.sh
 
 
@@ -19,6 +21,42 @@ if [ -z "${CI_COMMIT_REF_NAME}" ]; then
    CI_COMMIT_REF_NAME=master
 fi
 
+# Install a basic necessary tools
+
+sudo yum install -y wget
+sudo yum install -y vim
+
+# Setup Git and clone cne_backup repo
+
+cd ~
+sudo yum install git -y
+mkdir .git
+cd .git
+git init
+git clone https://github.com/Aharic/cne_backup.git
+
+# Build directories for all required repo files and repo certs
+
+sudo wget --no-proxy -P /tmp/db http://winterfell/occne/db/V980756-01.zip
+mkdir /tmp/certificates
+mkdir /tmp/yum.repos.d
+
+# Copy files from .git/repo to local repo directories
+
+cp cne_backup/repos/winterfell:5000.crt /tmp/certificates/
+cp cne_backup/repos/winterfell-ol7-mirror.repo /tmp/yum.repos.d
+sudo cp cne_backup/repos/public-yum-ol7.repo /etc/yum.repos.d/public-yum-ol7.repo
+
+# Setup occne_clouduser folder w/ golden cluster.tfvars file
+
+mkdir /var/terraform/occne_clouduser
+cp cne_backup/src/CNE/cluster.tfvars /var/terraform/occne_clouduser
+
+# Openstack initialization
+
+cd ~
+. *openrc.sh
+
 # Test openstack underlay access
 
 access_test=$(openstack region list)
@@ -27,37 +65,6 @@ if [ -z "$access_test" ]; then
    echo "openrc.sh file not properly initialized, stopping deployment"
    exit 1;
 fi
-
-# Install a few basic tools
-
-sudo yum install -y wget
-sudo yum install -y vim
-
-
-# Setup Git and clone cne_backup
-sudo yum install git -y
-mkdir .git
-cd .git
-git init
-git clone https://github.com/Aharic/cne_backup.git
-
-
-# Build diretories for all required repo files and repo certs
-
-sudo wget --no-proxy -P /tmp/db http://winterfell/occne/db/V980756-01.zip
-mkdir /tmp/certificates
-mkdir /tmp/yum.repos.d
-
-# Copy files from .git directories to respective repo directories
-
-cp cne_backup/CNE/certificates/winterfell:5000.crt /tmp/certificates/
-cp cne_backup/CNE/yum.repos.d/winterfell-ol7-mirror.repo /tmp/yum.repos.d
-sudo cp cne_backup/CNE/yum.repos.d/public-yum-ol7.repo /etc/yum.repos.d/public-yum-ol7.repo
-
-# Setup occne_clouduser folder w/ golden cluster.tfvars file
-
-mkdir /var/terraform/occne_clouduser
-cp CNE/cluster.tfvars /var/terraform/occne_clouduser
 
 # Gather Openstack subnet info
 
@@ -74,9 +81,11 @@ sed -i "s/$old_floatpool/$floatingip_pool/g" cluster.tfvars
 
 # Generate private/public key-pair
 
-ssh-keygen -m PEM -t rsa -N '' -b 2048 -f ~/.ssh/id_rsa <<<y 2>&1 >/dev/null 
+ssh-keygen -m PEM -t rsa -N '' -b 2048 -f ~/.ssh/id_rsa <<<y 2>&1 >/dev/null
 
 # Cleanup Artifacts
+
+rm networks
 
 # Run vCNE Minimal Install
 
