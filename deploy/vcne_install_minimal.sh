@@ -1,7 +1,7 @@
 ﻿#!/bin/bash
 
 # Launch command example
-# OCCNE_TFVARS_DIR=occne_clouduser CENTRAL_REPO=winterfell CENTRAL_REPO_IP=10.75.216.10 OCCNE_VERSION=1.5.0 OCCNE_CLUSTER=occne ./vcne_install.sh
+# OCCNE_TFVARS_DIR=occne_clouduser CENTRAL_REPO=winterfell CENTRAL_REPO_IP=10.75.216.10 OCCNE_VERSION=1.5.0 OCCNE_CLUSTER=vzw2 ./vcne_install_minimal.sh
 
 
 # Pre-Deployment global variable checks
