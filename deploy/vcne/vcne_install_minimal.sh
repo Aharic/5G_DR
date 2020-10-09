@@ -33,14 +33,14 @@ sudo yum install -y wget
 sudo yum install -y vim
 pip3 install --user python-openstackclient
 
-# Setup Git and clone cne_backup repo
+# Setup Git and clone 5G_DR repo
 
 cd ~
 sudo yum install git -y
 mkdir .git
 cd .git
 git init
-git clone https://github.com/Aharic/cne_backup.git
+git clone https://github.com/Aharic/5G_DR.git
 
 # Build directories for all required repo files and repo certs
 
@@ -50,14 +50,14 @@ mkdir /tmp/yum.repos.d
 
 # Copy files from .git/repo to local repo directories
 
-cp cne_backup/src/CNE/certificates/winterfell:5000.crt /tmp/certificates/
-cp cne_backup/repos/winterfell-ol7-mirror.repo /tmp/yum.repos.d
-sudo cp cne_backup/repos/public-yum-ol7.repo /etc/yum.repos.d/public-yum-ol7.repo
+cp 5G_DR/src/CNE/certificates/winterfell:5000.crt /tmp/certificates/
+cp 5G_DR/repos/winterfell-ol7-mirror.repo /tmp/yum.repos.d
+sudo cp 5G_DR/repos/public-yum-ol7.repo /etc/yum.repos.d/public-yum-ol7.repo
 
 # Setup occne_clouduser folder w/ golden cluster.tfvars file
 
 mkdir /var/terraform/occne_clouduser
-cp cne_backup/src/CNE/cluster-$OCCNE_VERSION-minimal.tfvars /var/terraform/occne_clouduser/cluster.tfvars
+cp 5G_DR/src/CNE/cluster-$OCCNE_VERSION-minimal.tfvars /var/terraform/occne_clouduser/cluster.tfvars
 
 # Openstack initialization
 
