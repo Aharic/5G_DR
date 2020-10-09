@@ -23,7 +23,7 @@ flavor_k8s_master = "dsrtac.cne.db.sql.small"
 
 # k8s nodes
 number_of_k8s_nodes = 3
-flavor_k8s_node = "dsrtac.cne.k8s.worker.large.disk100-custom"
+flavor_k8s_node = "dsrtac.cne.k8s.worker.large.disk100.ram44-custom"
 
 # mysql ndb nodes
 number_of_db_tier_management_nodes = 1
