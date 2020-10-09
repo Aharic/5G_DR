@@ -50,14 +50,14 @@ mkdir /tmp/yum.repos.d
 
 # Copy files from .git/repo to local repo directories
 
-cp 5G_DR/src/CNE/certificates/winterfell:5000.crt /tmp/certificates/
+cp 5G_DR/src/cne/certificates/winterfell:5000.crt /tmp/certificates/
 cp 5G_DR/repos/winterfell-ol7-mirror.repo /tmp/yum.repos.d
 sudo cp 5G_DR/repos/public-yum-ol7.repo /etc/yum.repos.d/public-yum-ol7.repo
 
 # Setup occne_clouduser folder w/ golden cluster.tfvars file
 
 mkdir /var/terraform/occne_clouduser
-cp 5G_DR/src/CNE/cluster-$OCCNE_VERSION-large.tfvars /var/terraform/occne_clouduser/cluster.tfvars
+cp 5G_DR/src/cne/cluster-$OCCNE_VERSION-large.tfvars /var/terraform/occne_clouduser/cluster.tfvars
 
 # Openstack initialization
 
