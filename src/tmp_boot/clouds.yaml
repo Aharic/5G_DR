@@ -1,0 +1,19 @@
+clouds:
+  mycloud:
+    auth:
+      auth_url: http://thundercloud.us.oracle.com:5000/v3
+      username: "ryder.brooks@oracle.com"
+      project_name: "DSRTAC"
+      project_id: 2f71e6ae13584d35b4a3596e863c46a2
+      user_domain_name: "LDAP"
+      password: "Y@hoo0099"
+    region_name: "RegionOne"
+    interface: "public"
+    identity_api_version: 3
+    loadbalancer:
+        lbaas_enabled: true/
+        subnet_id: c4c5375c-4a28-4775-8e42-b2b806514e87
+        floating_network_id: de033f1f-1e32-4b1f-b69a-dbf1a7a129f5
+        use_octavia: true
+        lb_method: ROUND_ROBIN
+

@@ -1,0 +1,20 @@
+global:
+  # Registry where cnc-nfdata-collector image present.
+  image:
+    repository: cne-bastion-1:5000
+
+  # path on slave node where exported-data folder is present. path including the exported-data directory
+  inputPath: "/tmp/dataexport-test/exported-data_2020-10-07_13:07:04"
+
+  #Mention the URL of elasticSearch here.
+  elasticSearchURL: "http://10.75.151.217:30131"
+
+  #Mention the URL of victoria here.
+  victoriaMetricsURL: "http://10.75.151.217:31200"
+
+  #Storage to be allocated to persistence
+  capacityStorage: 5Gi
+
+  #Name of the slave where fetched data has to be loaded
+  slaveNodeName: cne-k8s-node-1
+
