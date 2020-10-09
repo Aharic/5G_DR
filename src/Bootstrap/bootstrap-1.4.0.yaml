@@ -3,7 +3,7 @@
    fqdn: bootstrap
    system_info:
      default_user:
-       name: cloud-user
+       name: admusr
        lock_passwd: false
    bootcmd:
      - echo proxy=http://www-proxy.us.oracle.com:80 >> /etc/yum.conf
