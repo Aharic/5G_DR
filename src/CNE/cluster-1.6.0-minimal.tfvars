@@ -36,7 +36,7 @@ flavor_db_tier_sql_node = "dsrtac.cne.db.sql.small"
 
 # networking
 network_name = "vzw2"
-ntp_server = "10.75.171.2"
+ntp_server = "10.75.141.194"
 external_net = "1d25d5ea-77ca-4f56-b364-f53b09292e7b"
 subnet_cidr = "192.168.200.0/22"
 floatingip_pool = "ext-net2"

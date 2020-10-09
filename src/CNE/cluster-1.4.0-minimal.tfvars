@@ -1,5 +1,5 @@
 # your Kubernetes cluster name here. Must be a valid hostname.
-cluster_name = "vzw2"
+cluster_name = "cne"
 
 use_floating_ip = true
 
@@ -35,7 +35,7 @@ flavor_db_tier_data_node = "dsrtac.cne.db.data.small"
 flavor_db_tier_sql_node = "dsrtac.cne.db.sql.small"
 
 # networking
-network_name = "vzw2"
+network_name = "cne"
 ntp_server = "10.75.171.2"
 external_net = "1d25d5ea-77ca-4f56-b364-f53b09292e7b"
 subnet_cidr = "192.168.200.0/22"

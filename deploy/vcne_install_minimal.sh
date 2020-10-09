@@ -1,7 +1,13 @@
 ﻿#!/bin/bash
 
 # Launch command example
-# OCCNE_TFVARS_DIR=occne_clouduser CENTRAL_REPO=winterfell CENTRAL_REPO_IP=10.75.216.10 OCCNE_VERSION=1.5.0 OCCNE_CLUSTER=vzw2 ./vcne_install_minimal.sh
+# OCCNE_TFVARS_DIR=occne_clouduser CENTRAL_REPO=winterfell CENTRAL_REPO_IP=10.75.216.10 OCCNE_VERSION=1.5.0 CLUSTER_NAME=vzw2 LAB=arcus ./vcne_install_minimal.sh
+
+# Global variables
+# Set known NTP IPs for cluster.tfvars dynamic allocation
+
+arcus_ntp=10.75.141.194
+thundercloud_ntp=10.75.171.2
 
 
 # Pre-Deployment global variable checks
@@ -51,7 +57,7 @@ sudo cp cne_backup/repos/public-yum-ol7.repo /etc/yum.repos.d/public-yum-ol7.rep
 # Setup occne_clouduser folder w/ golden cluster.tfvars file
 
 mkdir /var/terraform/occne_clouduser
-cp cne_backup/src/CNE/cluster-$OCCNE_VERSION.tfvars /var/terraform/occne_clouduser/cluster.tfvars
+cp cne_backup/src/CNE/cluster-$OCCNE_VERSION-minimal.tfvars /var/terraform/occne_clouduser/cluster.tfvars
 
 # Openstack initialization
 
@@ -75,10 +81,15 @@ floatingip_pool=$(awk -v var="$external_net" '$0 ~ var {print $4}' networks)
 
 # Replace cluster.tfvars subnet placeholder variables with environment data from above
 
-old_extnet=$(cat /var/terraform/occne_clouduser/cluster.tfvars | grep -i external_net | grep -oP 'external_net = "\K[^"]+')
-old_floatpool=$(cat /var/terraform/occne_clouduser/cluster.tfvars | grep -i floatingip_pool | grep -oP 'floatingip_pool = "\K[^"]+')
-sed -i "s/$old_extnet/$external_net/g" /var/terraform/occne_clouduser/cluster.tfvars
-sed -i "s/$old_floatpool/$floatingip_pool/g" /var/terraform/occne_clouduser/cluster.tfvars
+tmp_extnet=$(cat /var/terraform/occne_clouduser/cluster.tfvars | grep -i external_net | grep -oP 'external_net = "\K[^"]+')
+tmp_floatpool=$(cat /var/terraform/occne_clouduser/cluster.tfvars | grep -i floatingip_pool | grep -oP 'floatingip_pool = "\K[^"]+')
+tmp_cluster=$(cat /var/terraform/occne_clouduser/cluster.tfvars | grep -i cluster_name | grep -oP 'cluster_name = "\K[^"]+')
+tmp_ntp=$(cat /var/terraform/occne_clouduser/cluster.tfvars | grep -i ntp_server | grep -oP 'ntp_server = "\K[^"]+')
+ntp_var=$LAB"_ntp"
+sed -i "s/$tmp_extnet/$external_net/g" /var/terraform/occne_clouduser/cluster.tfvars
+sed -i "s/$tmp_floatpool/$floatingip_pool/g" /var/terraform/occne_clouduser/cluster.tfvars
+sed -i "s/$tmp_cluster/$CLUSTER_NAME/g" /var/terraform/occne_clouduser/cluster.tfvars
+sed -i "s/$tmp_ntp/"${!ntp_var}"/g" /var/terraform/occne_clouduser/cluster.tfvars
 
 # Generate private/public key-pair
 
