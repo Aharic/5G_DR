@@ -84,11 +84,13 @@ floatingip_pool=$(awk -v var="$external_net" '$0 ~ var {print $4}' networks)
 tmp_extnet=$(cat /var/terraform/occne_clouduser/cluster.tfvars | grep -i external_net | grep -oP 'external_net = "\K[^"]+')
 tmp_floatpool=$(cat /var/terraform/occne_clouduser/cluster.tfvars | grep -i floatingip_pool | grep -oP 'floatingip_pool = "\K[^"]+')
 tmp_cluster=$(cat /var/terraform/occne_clouduser/cluster.tfvars | grep -i cluster_name | grep -oP 'cluster_name = "\K[^"]+')
+tmp_netname=$(cat /var/terraform/occne_clouduser/cluster.tfvars | grep -i network_name | grep -oP 'network_name = "\K[^"]+')
 tmp_ntp=$(cat /var/terraform/occne_clouduser/cluster.tfvars | grep -i ntp_server | grep -oP 'ntp_server = "\K[^"]+')
 ntp_var=$LAB"_ntp"
 sed -i "s/$tmp_extnet/$external_net/g" /var/terraform/occne_clouduser/cluster.tfvars
 sed -i "s/$tmp_floatpool/$floatingip_pool/g" /var/terraform/occne_clouduser/cluster.tfvars
 sed -i "s/$tmp_cluster/$CLUSTER_NAME/g" /var/terraform/occne_clouduser/cluster.tfvars
+sed -i "s/$tmp_netname/$CLUSTER_NAME/g" /var/terraform/occne_clouduser/cluster.tfvars
 sed -i "s/$tmp_ntp/"${!ntp_var}"/g" /var/terraform/occne_clouduser/cluster.tfvars
 
 # Generate private/public key-pair
@@ -102,4 +104,21 @@ rm networks
 # Run vCNE Minimal Install
 
 cd /var/terraform
-OCCNE_TFVARS_DIR=${OCCNE_TFVARS_DIR} CENTRAL_REPO=${CENTRAL_REPO} OCCNE_VERSION=${OCCNE_VERSION} OCCNE_CLUSTER=${OCCNE_CLUSTER} CENTRAL_REPO_IP=${CENTRAL_REPO_IP} ./deploy.sh
+OCCNE_TFVARS_DIR=${OCCNE_TFVARS_DIR} CENTRAL_REPO=${CENTRAL_REPO} OCCNE_VERSION=${OCCNE_VERSION} CENTRAL_REPO_IP=${CENTRAL_REPO_IP} ./deploy.sh
+
+# Prompt if user wants to continue to autoinstallation of NFs or stop here
+
+echo "Would you like to continue and auto-install NFs? (yes|no)"
+read -sr CONT_INPUT
+while [[ "${CONT_INPUT^^}" != "YES" && "${CONT_INPUT^^}" != "NO" ]]; do
+   echo "Please choose either 'yes' or 'no'"
+   read -sr CONT_INPUT
+done
+if [ "${CONT_INPUT^^}" = "YES" ]; then
+   #Link with specific NF install logic once each NF install script is verified
+   echo "Proceeding with NF installs"
+   exit 1
+elif [ "${CONT_INPUT^^}" = "NO" ]; then
+   echo "Thanks! Enjoy your new vCNE environment!"
+   exit 1
+fi
